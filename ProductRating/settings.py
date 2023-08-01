@@ -132,4 +132,4 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT="/var/www/ProductRating/static/"
 
-AUTH_USER_MODEL="user.CustomUser"
+AUTH_USER_MODEL="users.CustomUser"
