@@ -16,4 +16,17 @@ class Ratings(models.Model):
     product=models.ForeignKey(Product, on_delete=models.CASCADE)
     rating=models.CharField(max_length=20, choices=CHOICES, blank=True, null=True)
     user=models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
+
+    def __str__(self) -> str:
+        return self.product.barcode
+    
+    class Meta:
+        unique_together = (('product', 'user'),)
+
+
+    @staticmethod
+    def getAllRatings():
+        return Ratings.objects.all() 
+
     
