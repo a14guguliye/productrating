@@ -9,3 +9,7 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.barcode
+    
+    @staticmethod
+    def getProductByBarcode(barcode:str):
+        return Product.objects.get(barcode=barcode)

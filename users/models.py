@@ -7,3 +7,8 @@ class CustomUser(AbstractUser):
     def __str__(self) -> str:
         return super().__str__()
     
+
+    @staticmethod
+    def getUserByUsername(username:str):
+        return CustomUser.objects.get(username=username)
+    
