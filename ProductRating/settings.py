@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-(wcxw-j9xvylo0mytru7-rlki54!b6#=i$*)9=j0=*rlk(4l9i"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -127,9 +127,10 @@ STATIC_URL = "/static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+   BASE_DIR / "static",
 ]
 
 STATIC_ROOT="/var/www/ProductRating/static/"
+
 
 AUTH_USER_MODEL="users.CustomUser"
