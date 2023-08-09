@@ -15,15 +15,15 @@ class AverageRating(models.Model):
 
 class Ratings(models.Model):
 
-    CHOICES = [
-        ('1', '1 star'),
-        ('2', '2 stars'),
-        ('3', '3 stars'),
-        ('4', '4 stars'), 
-        ('5', '5 stars'), 
-    ]
+    # CHOICES = [
+    #     ('1', '1 star'),
+    #     ('2', '2 stars'),
+    #     ('3', '3 stars'),
+    #     ('4', '4 stars'), 
+    #     ('5', '5 stars'), 
+    # ]
     product=models.ForeignKey(Product, on_delete=models.CASCADE)
-    rating=models.CharField(max_length=20, choices=CHOICES, blank=True, null=True)
+    rating=models.CharField(max_length=20, blank=True, null=True)
     user=models.ForeignKey(CustomUser, on_delete=models.CASCADE,  blank=True, null=True)
     phoneId=models.CharField(max_length=50, blank=True, null=True)
     location=models.CharField(max_length=50, blank=True, null=True)
