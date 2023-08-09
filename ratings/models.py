@@ -24,14 +24,16 @@ class Ratings(models.Model):
     ]
     product=models.ForeignKey(Product, on_delete=models.CASCADE)
     rating=models.CharField(max_length=20, choices=CHOICES, blank=True, null=True)
-    user=models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user=models.ForeignKey(CustomUser, on_delete=models.CASCADE,  blank=True, null=True)
+    phoneId=models.CharField(max_length=50, blank=True, null=True)
+    location=models.CharField(max_length=50, blank=True, null=True)
 
 
     def __str__(self) -> str:
         return self.product.barcode
     
     class Meta:
-        unique_together = (('product', 'user'),)
+        unique_together = (('product', 'user'),('product', 'phoneId'))
 
 
     @staticmethod
@@ -39,8 +41,8 @@ class Ratings(models.Model):
         return Ratings.objects.all() 
     
     @staticmethod
-    def createNewRating(user:CustomUser, product:Product, rating:str):
-        newRating=Ratings.objects.create(user=user, rating=rating,product=product)
+    def createNewRating(user:CustomUser, product:Product, rating:str, location:str, phoneId:str):
+        newRating=Ratings.objects.create(user=user, rating=rating,product=product, location=location, phoneId=phoneId)
         newRating.save()
         return newRating
     

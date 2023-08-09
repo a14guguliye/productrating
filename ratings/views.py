@@ -26,13 +26,19 @@ class RatingsListView(APIView):
 class RatingsSubmitPostView(APIView):
     def post(self,request,  *args, **kwargs):
         try:
-            username=request.data.get('username')
+            phoneId=request.data.get('phoneid')
             rating=request.data.get('rating')
             barcode=request.data.get('barcode')
-
-            user=CustomUser.getUserByUsername(username=username)
+            location=request.data.get('location')
+            username=request.data.get("username")
+            user=None 
+            if(username):
+                user=CustomUser.getUserByUsername(username=username)
             product=Product.getProductByBarcode(barcode=barcode)
-            newRating=Ratings.createNewRating(user=user, rating=rating,product=product)
+            if(product is None):
+                product=Product.objects.create(barcode=barcode, description="to be populated")
+                product.save(); 
+            newRating=Ratings.createNewRating(user=user, rating=rating,product=product, location=location, phoneId=phoneId)
 
             ratingSerializer=RatingsSerializer(newRating)
             return Response(ratingSerializer.data)

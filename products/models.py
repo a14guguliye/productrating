@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your models here.
 
@@ -12,4 +13,8 @@ class Product(models.Model):
     
     @staticmethod
     def getProductByBarcode(barcode:str):
-        return Product.objects.get(barcode=barcode)
+        try:
+            return Product.objects.get(barcode=barcode)
+        except ObjectDoesNotExist:
+            return None; 
+
